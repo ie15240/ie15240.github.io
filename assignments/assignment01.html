@@ -1,5 +1,16 @@
 <!DOCTYPE html>
 <html>
+  <script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
+  <script>
+    // Initialize Firebase
+    var config = {
+      apiKey: "AIzaSyBO8FpKEWJmSeUu4cshI-aaxDzR_KDWIUs",
+      authDomain: "ie15240-pnu.firebaseapp.com",
+      databaseURL: "https://ie15240-pnu.firebaseio.com",
+      storageBucket: "ie15240-pnu.appspot.com",
+    };
+    firebase.initializeApp(config);
+  </script>
 
   <head>
     <meta charset='utf-8'>
@@ -32,7 +43,64 @@
 
 <p>Print out "Hello, world" in the console.</p>
 
+<h3>Upload</h3>
+<p>
+  The file name should be <code>your_student_id</code>_<code>your_name</code>.java </br>
+  For example, 201012345_홍길동.java </br>
+  I will <strong>not</strong> review the file which is not named as above.
+</p>
 
+
+<a href="" onclick="document.getElementById('select').click(); return false">Upload file</a>
+<label id="progress"></label>
+<input type="file" id="select" name="files[]" style="visibility: hidden; width: 1px; height: 1px"/>
+
+<script>
+  function handleFileSelect(evt) {
+    var files = evt.target.files; // FileList object
+
+    var r = confirm("Do you want to submit the file \"" + files[0].name + "\"?");
+    if (r == true) {
+        upload(files);
+    } else {
+        this.value = null;
+    }
+  }
+
+  document.getElementById('select').addEventListener('change', handleFileSelect, false);
+
+  function upload(files) {
+    if (files != null) {
+      var storage = firebase.storage();
+      var storageRef = storage.ref().child('assignments').child('01');
+
+      var file = files[0];
+      var uploadTask = storageRef.child(file.name).put(file);
+      uploadTask.on('state_changed', function(snapshot) {
+        var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+        document.getElementById('progress').innerHTML = progress.toFixed(2) + " %";
+        switch (snapshot.state) {
+          case firebase.storage.TaskState.PAUSED: // or 'paused'
+            console.log('Upload is paused');
+            break;
+          case firebase.storage.TaskState.RUNNING: // or 'running'
+            console.log('Upload is running');
+            break;
+        }
+      }, function(error) {
+        alert("Upload failed. Please retry.");
+      }, function() {
+        document.getElementById('progress').innerHTML = null;
+        alert("Upload complete!");
+      });
+    } else {
+      alert("No file selected.");
+    }
+  }
+</script>
+
+<h3>
+<a id="back" class="anchor" href="../index.html">&lt; Back</a></h3>
 
       </section>
     </div>
