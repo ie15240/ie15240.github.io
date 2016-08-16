@@ -27,8 +27,7 @@
     <!-- HEADER -->
     <div id="header_wrap" class="outer">
         <header class="inner">
-          <a id="forkme_banner" href="https://github.com/ie15240">View on GitHub</a>
-
+          <!-- <a id="forkme_banner" href="https://github.com/ie15240">View on GitHub</a> -->
           <h1 id="project_title">Computer Programming</h1>
           <h2 id="project_tagline">Assignment 01</h2>
 
@@ -39,28 +38,45 @@
     <div id="main_content_wrap" class="outer">
       <section id="main_content" class="inner">
         <h3>
-<a id="assignment-01" class="anchor" href="#assignment-01" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Assignment 01</h3>
+          <a id="assignment-01" class="anchor" href="#assignment-01" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Assignment 01
+        </h3>
 
-<ol>
-  <li>Print out your name in the console.</li>
-  <li>Numerial operation</li>
-  <ul style="list-style-type:none">
-    <li>2.1. Store two integer values in variables <code>x</code> and <code>y</code> respectively.</li>
-    <li>2.2. Print out the result of summing <code>x</code> and <code>y</code> in the console.</li>
-  </ul>
-</ol>
+        <ol>
+          <li>Print out your name in the console.</li>
+          <li>Numerial operation</li>
+          <ul style="list-style-type:none">
+            <li>2.1. Store two integer values in variables <code>x</code> and <code>y</code> respectively.</li>
+            <li>2.2. Print out the result of summing <code>x</code> and <code>y</code> in the console.</li>
+          </ul>
+        </ol>
 
-<h3>Upload</h3>
-<p>
-  The file name should be <code>your_student_id</code>_<code>your_name</code>.java </br>
-  For example, 201012345_홍길동.java </br>
-  I will <strong>not</strong> review the file which is not named as above. so check it carefully.
-</p>
+        <h3>Upload</h3>
+        <p>
+          The file name should be <code>your_student_id</code>_<code>your_name</code>.java </br>
+          For example, 201012345_홍길동.java </br>
+          I will <strong>not</strong> review the file which is not named as above. so check it carefully.
+        </p>
 
+        <a href="" onclick="document.getElementById('select').click(); return false">Upload file</a>
+        <label id="progress"></label>
+        <input type="file" id="select" name="files[]" style="visibility: hidden; width: 1px; height: 1px"/>
 
-<a href="" onclick="document.getElementById('select').click(); return false">Upload file</a>
-<label id="progress"></label>
-<input type="file" id="select" name="files[]" style="visibility: hidden; width: 1px; height: 1px"/>
+        <h3>
+          <a id="back" class="anchor" onclick="back()">&lt; Back</a>
+        </h3>
+
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p>Published with <a href="https://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+  </body>
+</html>
 
 <script>
   function handleFileSelect(evt) {
@@ -104,20 +120,8 @@
       alert("No file is selected.");
     }
   }
+
+  function back() {
+    window.history.back();
+  }
 </script>
-
-<h3>
-<a id="back" class="anchor" href="../index.html">&lt; Back</a></h3>
-
-      </section>
-    </div>
-
-    <!-- FOOTER  -->
-    <div id="footer_wrap" class="outer">
-      <footer class="inner">
-        <p>Published with <a href="https://pages.github.com">GitHub Pages</a></p>
-      </footer>
-    </div>
-
-  </body>
-</html>
