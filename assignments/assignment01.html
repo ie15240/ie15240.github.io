@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
   <script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
   <script>
@@ -27,7 +27,7 @@
     <!-- HEADER -->
     <div id="header_wrap" class="outer">
         <header class="inner">
-          <!-- <a id="forkme_banner" href="https://github.com/ie15240">View on GitHub</a> -->
+          <a id="forkme_banner" href="https://github.com/ie15240">View on GitHub</a>
           <h1 id="project_title">Computer Programming</h1>
           <h2 id="project_tagline">Assignment 01</h2>
 
@@ -113,7 +113,7 @@
       }, function(error) {
         alert("Upload is failed. Please retry.");
       }, function() {
-        document.getElementById('progress').innerHTML = null;
+        document.getElementById('progress').innerHTML = "";
         alert("Upload is completed!");
       });
     } else {
