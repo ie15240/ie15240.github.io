@@ -10,6 +10,12 @@
       storageBucket: "ie15240-pnu.appspot.com",
     };
     firebase.initializeApp(config);
+
+    address = window.location;
+    address = String(address).split('?');
+    parameter = address[1];
+    parameter = parameter.split('=');
+    div = parameter[1];   
   </script>
 
   <head>
@@ -37,8 +43,10 @@
     <!-- MAIN CONTENT -->
     <div id="main_content_wrap" class="outer">
       <section id="main_content" class="inner">
-        <h3>
-          <a id="assignment-01" class="anchor" href="#assignment-01" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Assignment 01
+        <h3 id="assignment">
+          <script>
+            document.getElementById("assignment").innerHTML = "Assignment 01 (" + div + ")";
+          </script>
         </h3>
 
         <ol>
@@ -95,7 +103,7 @@
   function upload(files) {
     if (files != null) {
       var storage = firebase.storage();
-      var storageRef = storage.ref().child('assignments').child('01');
+      var storageRef = storage.ref().child('assignments').child('01').child(div);
 
       var file = files[0];
       var uploadTask = storageRef.child(file.name).put(file);
