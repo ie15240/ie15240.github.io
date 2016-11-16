@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="description" content="Assignment03 Solution : ">
+
+    <link rel="stylesheet" type="text/css" media="screen" href="../stylesheets/stylesheet.css">
+
+    <title>Assignment04 Solution</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/ie15240">View on GitHub</a>
+          <h1 id="project_title">Computer Programming</h1>
+          <h2 id="project_tagline">Assignment04 Solution</h2>
+
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h3 id="assignment04_solution">
+          <script>
+            document.getElementById("assignment04_solution").innerHTML = "Assignment04 Solution";
+          </script>
+        </h3>
+
+        <div id="solution">
+          <p>Seat.java</p>
+          <pre class="prettyprint">
+public class Seat {
+  private int fee;
+  private boolean isReserved;
+  
+  public Seat(int fee, boolean isReserved) {
+    this.fee = fee;
+    this.isReserved = isReserved;
+  }
+  
+  public boolean isReserved() {
+    return isReserved;
+  }
+  
+  public void reserve() {
+    isReserved = true;
+  }
+  
+  public int getFee() {
+    return fee;
+  }
+}
+</pre><br>
+          <p>Reservation.java</p>
+          <pre class="prettyprint">
+import java.util.Scanner;
+
+public class Reservation {
+  private Seat[][] s;
+  
+  public Reservation() {
+    s = new Seat[2][10];
+    for (int r=0 ; r<2 ; r++) {
+      for (int c=0 ; c<10 ; c++) {
+        if (r == 0)
+          s[r][c] = new Seat(10000, false);
+        else
+          s[r][c] = new Seat(20000, false);
+      }
+    }
+  }
+  
+  public void showStatus() {
+    for (int r=0 ; r<2 ; r++) {
+      for (int c=0 ; c<10 ; c++) {
+        if (s[r][c].isReserved())
+          System.out.print("1 ");
+        else
+          System.out.print("0 ");
+      }
+      System.out.println();
+    }
+  }
+  
+  public boolean reserve(int row, int col) {
+    if (s[row][col].isReserved()) {
+      return false;
+    } else {
+      s[row][col].reserve();
+      return true;
+    }
+  }
+  
+  public int getFee(int row, int col) {
+    return s[row][col].getFee();
+  }
+  
+  public static void main(String[] args) {
+    Scanner input = new Scanner(System.in);
+    Reservation reservation = new Reservation();
+    
+    while (true) {
+      System.out.print("좌석을 예약하시겠습니까? (1/0) ");
+      int finish = input.nextInt();
+      if (finish == 0) {
+        System.out.println("종료합니다");
+        break;
+      }
+      
+      reservation.showStatus();
+      
+      System.out.println("몇 번 자리를 예약하시겠습니까?");
+      int row = input.nextInt();
+      int col = input.nextInt();
+      if (reservation.reserve(row, col)) {
+        System.out.println("예약되었습니다. 가격은 " + reservation.getFee(row, col) + "원입니다.");
+      } else {
+        System.out.println("예약할 수 없습니다.");
+      }
+    }
+  }
+}
+</pre><br>
+        </div>
+              
+        <p></p>
+        <h3>
+          <a id="back" class="anchor" onclick="back()">&lt; Back</a>
+        </h3>
+
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p>Published with <a href="https://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+  </body>
+</html>
+
+<script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js"></script>
+
+<script>
+  function back() {
+    window.history.back();
+  }
+</script>
