@@ -25,7 +25,7 @@
 
     <link rel="stylesheet" type="text/css" media="screen" href="../stylesheets/stylesheet.css">
 
-    <title>Midterm</title>
+    <title>Final</title>
   </head>
 
   <body>
@@ -50,27 +50,28 @@
         </h3>
         <p>
           1. Enter your student id (e.g. 201612345) properly.</br>
-          2. Select the source code file (.java) for each problem.</br>
+          2. Select the source code files (.java).</br>
           3. Click 'Upload' to upload selected files.</br>
         </p>
         <label>Student ID</label>
         <input type="text" id="student_id"></br>
 
-        <label>File for problem 1 (Student.java)</label>
+        <label>File 1 (Student.java)</label>
         <input type="file" id="file1" name="files[]"/>
         <label id="progress1"></label>
         </br>
 
-        <label>File for problem 2 (Professor.java)</label>
+        <label>File 2 (Professor.java)</label>
         <input type="file" id="file2" name="files[]"/>
         <label id="progress2"></label>
         </br>
 
-        <label>File for problem 3 (Member.java)</label>
+        <label>File 3 (Member.java)</label>
         <input type="file" id="file3" name="files[]"/>
         <label id="progress3"></label>
+        </br>
 
-        <label>File for problem 4 (University.java)</label>
+        <label>File 4 (University.java)</label>
         <input type="file" id="file4" name="files[]"/>
         <label id="progress4"></label>
 
@@ -99,22 +100,42 @@
 
   function handleFile1Select(evt) {
     var files = evt.target.files; // FileList object
-    fileMap[1] = files[0];
+    if (files[0].name == "Student.java") {
+      fileMap[1] = files[0];
+    } else {
+      alert('Not allowed');
+      document.getElementById('file1').value = '';
+    }
   }
 
   function handleFile2Select(evt) {
     var files = evt.target.files; // FileList object
-    fileMap[2] = files[0];
+    if (files[0].name == "Professor.java") {
+      fileMap[2] = files[0];
+    } else {
+      alert('Not allowed');
+      document.getElementById('file2').value = '';
+    }
   }
 
   function handleFile3Select(evt) {
     var files = evt.target.files; // FileList object
-    fileMap[3] = files[0];
+    if (files[0].name == "Member.java") {
+      fileMap[3] = files[0];
+    } else {
+      alert('Not allowed');
+      document.getElementById('file3').value = '';
+    }
   }
 
   function handleFile4Select(evt) {
     var files = evt.target.files; // FileList object
-    fileMap[4] = files[0];
+    if (files[0].name == "University.java") {
+      fileMap[4] = files[0];
+    } else {
+      alert('Not allowed');
+      document.getElementById('file4').value = '';
+    }
   }
 
   document.getElementById('file1').addEventListener('change', handleFile1Select, false);
