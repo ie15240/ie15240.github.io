@@ -10,12 +10,6 @@
       storageBucket: "ie15240-pnu.appspot.com",
     };
     firebase.initializeApp(config);
-
-    address = window.location;
-    address = String(address).split('?');
-    parameter = address[1];
-    parameter = parameter.split('=');
-    div = parameter[1];
   </script>
 
   <head>
@@ -45,7 +39,7 @@
       <section id="main_content" class="inner">
         <h3 id="final">
           <script>
-            document.getElementById("final").innerHTML = "Final (" + div + ")";
+            document.getElementById("final").innerHTML = "Final (067)";
           </script>
         </h3>
         <p>
@@ -56,22 +50,22 @@
         <label>Student ID</label>
         <input type="text" id="student_id"></br>
 
-        <label>File 1 (Student.java)</label>
+        <label>File 1 (Keyboard.java)</label>
         <input type="file" id="file1" name="files[]"/>
         <label id="progress1"></label>
         </br>
 
-        <label>File 2 (Professor.java)</label>
+        <label>File 2 (USB.java)</label>
         <input type="file" id="file2" name="files[]"/>
         <label id="progress2"></label>
         </br>
 
-        <label>File 3 (Member.java)</label>
+        <label>File 3 (Peripheral.java)</label>
         <input type="file" id="file3" name="files[]"/>
         <label id="progress3"></label>
         </br>
 
-        <label>File 4 (University.java)</label>
+        <label>File 4 (Computer.java)</label>
         <input type="file" id="file4" name="files[]"/>
         <label id="progress4"></label>
 
@@ -100,7 +94,7 @@
 
   function handleFile1Select(evt) {
     var files = evt.target.files; // FileList object
-    if (files[0].name == "Student.java") {
+    if (files[0].name == "Keyboard.java") {
       fileMap[1] = files[0];
     } else {
       alert('Not allowed');
@@ -110,7 +104,7 @@
 
   function handleFile2Select(evt) {
     var files = evt.target.files; // FileList object
-    if (files[0].name == "Professor.java") {
+    if (files[0].name == "USB.java") {
       fileMap[2] = files[0];
     } else {
       alert('Not allowed');
@@ -120,7 +114,7 @@
 
   function handleFile3Select(evt) {
     var files = evt.target.files; // FileList object
-    if (files[0].name == "Member.java") {
+    if (files[0].name == "Peripheral.java") {
       fileMap[3] = files[0];
     } else {
       alert('Not allowed');
@@ -130,7 +124,7 @@
 
   function handleFile4Select(evt) {
     var files = evt.target.files; // FileList object
-    if (files[0].name == "University.java") {
+    if (files[0].name == "Computer.java") {
       fileMap[4] = files[0];
     } else {
       alert('Not allowed');
@@ -174,7 +168,7 @@
   function upload(key) {
     var studentId = document.getElementById("student_id").value
     var storage = firebase.storage();
-    var storageRef = storage.ref().child('final').child(div).child(studentId);
+    var storageRef = storage.ref().child('final').child('067').child(studentId);
 
     var file = fileMap[key];
     var element;
