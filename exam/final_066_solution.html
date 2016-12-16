@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="description" content="Midterm Solution : ">
+
+    <link rel="stylesheet" type="text/css" media="screen" href="../stylesheets/stylesheet.css">
+
+    <title>Final Solution</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/ie15240">View on GitHub</a>
+          <h1 id="project_title">Computer Programming</h1>
+          <h2 id="project_tagline">Final Solution</h2>
+
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h3 id="final_solution">
+          Final Solution (066)
+        </h3>
+          <p>Student.java</p>
+          <pre class="prettyprint">
+public class Student extends Member {
+  private int year;
+  private double[] grades;
+  
+  public Student(String name, String id, String department) {
+    super(name, id, department);
+    grades = new double[4];
+    year = 1;
+  }
+  
+  public void setGrade(int year, double grade) {
+    grades[year-1] = grade;
+    if (year > this.year) {
+      this.year = year;
+    }
+  }
+  
+  public double getGradeAverage() {
+    double gradeSum = 0;
+    for (int i = 0 ; i < year ; i++) {
+      gradeSum += grades[i];
+    }
+    return gradeSum / year;
+  }
+  
+  @Override
+  public double getAverage() {
+    return getGradeAverage();
+  }
+
+  public String toString() {
+    return getInfo() + "\t" + getGradeAverage();
+  }
+}
+</pre><br>
+          <p>Professor.java</p>
+          <pre class="prettyprint">
+public class Professor extends Member {
+  private double[] lectures;
+  
+  public Professor(String name, String id, String department) {
+    super(name, id, department);
+    lectures = new double[5];
+  }
+  
+  public void setLecture(int index, int lecture) {
+    lectures[index] = lecture;
+  }
+  
+  public double getLectureAverage() {
+    int lectureSum = 0;
+    for (int i = 0 ; i < lectures.length ; i++) {
+      lectureSum += lectures[i];
+    }
+    return lectureSum / 5.0;
+  }
+  
+  @Override
+  public double getAverage() {
+    return getLectureAverage();
+  }
+
+  public String toString() {
+    return getInfo() + "\t" + getLectureAverage();
+  }
+}
+</pre><br>
+          <p>Member.java</p>
+          <pre class="prettyprint">
+public abstract class Member {
+  private String name;
+  private String id;
+  private String department;
+  
+  public Member(String name, String id, String department) {
+    this.name = name;
+    this.id = id;
+    this.department = department;
+  }
+  
+  public abstract double getAverage();
+  public String getInfo() {
+    if (this instanceof Professor) {
+      return name + "\t" + id + "\t\t" + department + "\t"; 
+    } else {
+      return name + "\t" + id + "\t" + department + "\t";
+    }
+  }
+}
+</pre><br>    
+          <p>University.java</p>
+          <pre class="prettyprint">
+import java.util.ArrayList;
+
+public class University {
+  public static void main(String[] args) {
+    Student s1 = new Student("학생1", "201512345", "산업공학과");
+    s1.setGrade(1, 2.5);
+    s1.setGrade(2, 3.1);
+    Student s2 = new Student("학생2", "201412345", "산업공학과");
+    s2.setGrade(1, 3.2);
+    s2.setGrade(2, 2.2);
+    s2.setGrade(3, 3.9);
+    
+    Professor p1 = new Professor("교수1", "123456", "산업공학과");
+    p1.setLecture(0, 3);
+    p1.setLecture(1, 5);
+    p1.setLecture(2, 4);
+    p1.setLecture(3, 2);
+    p1.setLecture(4, 3);
+    Professor p2 = new Professor("교수2", "234567", "산업공학과");
+    p2.setLecture(0, 0);
+    p2.setLecture(1, 2);
+    p2.setLecture(2, 2);
+    p2.setLecture(3, 3);
+    p2.setLecture(4, 3);
+    
+    ArrayList<Member> members = new ArrayList<>();
+    members.add(s1);
+    members.add(s2);
+    members.add(p1);
+    members.add(p2);
+    
+    System.out.println("이름\tID\t\t학과\t\t학점/강의수");
+    System.out.println("------------------------------------------------");
+    for (int i = 0 ; i < members.size() ; i++) {
+      System.out.println(members.get(i));
+    }
+  }
+}
+</pre><br>             
+        <p></p>
+        <h3>
+          <a id="back" class="anchor" onclick="back()">&lt; Back</a>
+        </h3>
+
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p>Published with <a href="https://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+  </body>
+</html>
+
+<script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js"></script>
+
+<script>
+  function back() {
+    window.history.back();
+  }
+</script>

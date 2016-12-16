@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="description" content="Midterm Solution : ">
+
+    <link rel="stylesheet" type="text/css" media="screen" href="../stylesheets/stylesheet.css">
+
+    <title>Final Solution</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/ie15240">View on GitHub</a>
+          <h1 id="project_title">Computer Programming</h1>
+          <h2 id="project_tagline">Final Solution</h2>
+
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h3 id="final_solution">
+          Final Solution (067)
+        </h3>
+          <p>Keyboard.java</p>
+          <pre class="prettyprint">
+public class Keyboard extends Peripheral {
+  public Keyboard(String id) {
+    super(id);
+  }
+
+  public void type(String text) {
+    if (computer.isConnected(this)) {
+      System.out.println(id + ": " + text);
+    } else {
+      System.out.println(id + " is not connected");
+    }
+  }
+  
+  public String toString() {
+    return id + " Keyboard";
+  }
+}
+</pre><br>
+          <p>USB.java</p>
+          <pre class="prettyprint">
+public class USB extends Peripheral {
+  private String data = "";
+  
+  public USB(String id) {
+    super(id);
+  }
+
+  public void save(String data) {
+    if (computer.isConnected(this)) {
+      this.data += data;
+    } else {
+      System.out.println(id + " is not connected");
+    }
+  }
+  
+  public void read() {
+    if (computer.isConnected(this)) {
+      System.out.println(id + ": " + data);
+    } else {
+      System.out.println(id + " is not connected");
+    }
+  }
+  
+  public String toString() {
+    return id + " USB";
+  }
+}
+</pre><br>
+          <p>Peripheral.java</p>
+          <pre class="prettyprint">
+public class Peripheral {
+  protected String id;
+  protected Computer computer;
+  
+  public Peripheral(String id) {
+    this.id = id;
+  }
+  
+  public void connectTo(Computer computer) {
+    this.computer = computer;
+    computer.connect(this);
+    System.out.println(id + " is connected");
+  }
+}
+</pre><br>    
+          <p>Computer.java</p>
+          <pre class="prettyprint">
+import java.util.ArrayList;
+
+public class Computer {
+  private ArrayList<Peripheral> ports = new ArrayList<>();
+  
+  public void connect(Peripheral p) {
+    ports.add(p);
+  }
+  
+  public boolean isConnected(Peripheral p) {
+    return ports.contains(p);
+  }
+  
+  public void showPeripherals() {
+    System.out.println("연결된 주변기기");
+    for (int i = 0 ; i < ports.size() ; i++) {
+      System.out.println(ports.get(i));
+    }
+  }
+  
+  public static void main(String[] args) {
+    Computer computer = new Computer();
+    Keyboard keyboard = new Keyboard("k01");
+    USB usb = new USB("u01");
+
+    keyboard.type("Hello");
+    usb.save("Hello");
+    
+    keyboard.connectTo(computer);
+    usb.connectTo(computer);
+    keyboard.type("Hello");
+    usb.save("Java");
+    usb.read();
+    computer.showPeripherals();
+  }
+}
+</pre><br>             
+        <p></p>
+        <h3>
+          <a id="back" class="anchor" onclick="back()">&lt; Back</a>
+        </h3>
+
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p>Published with <a href="https://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+  </body>
+</html>
+
+<script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js"></script>
+
+<script>
+  function back() {
+    window.history.back();
+  }
+</script>
